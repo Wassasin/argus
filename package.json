@@ -1,0 +1,9 @@
+{
+  "name": "argus",
+  "version": "1.0.0",
+  "description": "Command-line interface for the Coop supermarket chain",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
