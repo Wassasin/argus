@@ -89,15 +89,24 @@ const setAmount = (sku, amount, syncToken, f) => {
 	});
 };
 
-getSyncToken((tok) => {
-	search('bapao', (result) => {
-		let p = result[0];
+const purgeBasket = (syncToken, f) => {
+	getBasket((ps) => {
+		_.reduce(ps, (g, p) => {
+			return () => { setAmount(p.id, 0, syncToken, g); }
+		}, f)();
+	});
+};
 
-		setAmount(p.id, 3, tok, () => {
-			getBasket((result) => {
-				console.log(result);
+getSyncToken((tok) => {
+	purgeBasket(tok, () => {
+		search('bapao', (result) => {
+			let p = result[0];
+
+			setAmount(p.id, 3, tok, () => {
+				getBasket((result) => {
+					console.log(result);
+				});
 			});
 		});
 	});
 });
-
